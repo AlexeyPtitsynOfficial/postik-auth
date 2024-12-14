@@ -49,7 +49,7 @@ const Login = () => {
         <h3>Aвторизация</h3>
         <Input type="text" name="Email" label="Электронная почта или логин" />
         <Input type="password" name="Password" label="Пароль" />
-        <Button type="submit">Авторизоватьсяs</Button>
+        <Button type="submit">Авторизоваться</Button>
         <div>
           <a href="/auth/signup">Зарегистрироваться</a>
         </div>
