@@ -1,1 +1,3 @@
-@import "mixins", "globals", "breakpoints";
+@use "mixins";
+@use "globals";
+@use "breakpoints";

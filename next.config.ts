@@ -2,10 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  basePath: "/signin",
-  webpack(config) {
+  sassOptions: {
+    silenceDeprecations: ["legacy-js-api", "import"],
+    //implementation: "sass-embedded",
+  },
+  /*webpack(config) {
     config.module.rules.push({
-      /*test: /\.s[ac]ss$/i,*/ test: /\.(scss|sass|less|css)$/,
+      test: /\.(scss|sass|less|css)$/,
       use: [
         "style-loader",
         "css-loader",
@@ -19,7 +22,7 @@ const nextConfig: NextConfig = {
       ],
     });
     return config;
-  },
+  },*/
 
   async rewrites() {
     return [
