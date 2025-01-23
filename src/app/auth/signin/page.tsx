@@ -6,6 +6,7 @@ import Input from "@/components/Input/Input";
 import { redirect } from "next/navigation";
 import { AuthError } from "next-auth";
 import { auth, signIn } from "@/lib/auth";
+import { cookies } from "next/headers";
 
 const Login = () => {
   /*const handleChange = ({
@@ -83,6 +84,9 @@ const Login = () => {
       }
       throw error;
     } finally {
+      const cookieStore = await cookies();
+      const authToken = cookieStore.get("authcookie");
+      console.log(authToken);
       console.log("signIn end");
       const session = await auth();
       console.log(session);

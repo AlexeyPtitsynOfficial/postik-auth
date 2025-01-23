@@ -5,6 +5,7 @@ import Credentials from "next-auth/providers/credentials";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   debug: true,
+  secret: process.env.AUTH_SECRET,
   providers: [
     Credentials({
       credentials: {
@@ -43,17 +44,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
+  session: { strategy: "jwt" },
+
   callbacks: {
-    session({ session, token, user }) {
+    async jwt({ token, user }) {
+      if (user) {
+        token = user;
+      }
+      return token;
+    },
+    async session({ session, token }) {
       // `session.user.address` is now a valid property, and will be type-checked
       // in places like `useSession().data.user` or `auth().user`
-      return {
-        ...session,
-        user: {
-          ...session.user,
-        },
-        token: token,
-      };
+      session = token as any;
+      return session;
     },
   },
   pages: {
